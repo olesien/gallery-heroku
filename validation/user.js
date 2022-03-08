@@ -1,5 +1,5 @@
 /**
- * user Validation Rules
+ * User Validation Rules
  */
 
 const { body } = require("express-validator");
@@ -15,7 +15,7 @@ const models = require("../models");
  * last_name
  */
 const registerRules = [
-	body("email").exists().isEmail().normalizeEmail(),
+	body("email").exists().normalizeEmail().isEmail(),
 	body("password").exists().isLength({ min: 5 }).escape(),
 	body("first_name").exists().isLength({ min: 2 }).escape(),
 	body("last_name").exists().isLength({ min: 2 }).escape(),
@@ -37,7 +37,7 @@ const refreshRules = [body("token").exists().isLength({ min: 10 })];
  * password
  */
 const loginRules = [
-	body("email").exists().isEmail().normalizeEmail(),
+	body("email").exists().normalizeEmail().isEmail(),
 	body("password").exists().isLength({ min: 5 }).escape(),
 ];
 

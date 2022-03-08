@@ -126,17 +126,17 @@ const storeRelation = async (req, res) => {
 	validData.user_id = req.user.user_id;
 
 	// Get the album & photo relation to that album
-	let album;
-	try {
-		album = await models.Album.fetchPhotos(
-			req.user.user_id,
-			req.params.albumId,
-			{ withRelated: ["photos"] }
-		);
-	} catch (error) {
+
+	const album = await models.Album.fetchPhotos(
+		req.user.user_id,
+		req.params.albumId,
+		{ withRelated: ["photos"], require: false }
+	);
+	//If not defined, album does not exist or auth is lacked
+	if (!album) {
 		return res.send({
 			status: "fail",
-			data: "Album does not exist!",
+			data: "Album does not exist or you do not have permission to view it!",
 		});
 	}
 
@@ -285,17 +285,17 @@ const destroyRelation = async (req, res) => {
 	// check for any validation errors
 	const photo_id = req.params.photoId;
 	// Get the album & photo relation to that album
-	let album;
-	try {
-		album = await models.Album.fetchPhotos(
-			req.user.user_id,
-			req.params.albumId,
-			{ withRelated: ["photos"] }
-		);
-	} catch (error) {
+
+	const album = await models.Album.fetchPhotos(
+		req.user.user_id,
+		req.params.albumId,
+		{ withRelated: ["photos"], require: false }
+	);
+	//Check if album is not defined, meaning wrong album id
+	if (!album) {
 		return res.send({
 			status: "fail",
-			data: "Album does not exist!",
+			data: "Album does not exist or you do not own it!",
 		});
 	}
 
