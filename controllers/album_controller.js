@@ -2,7 +2,7 @@
  * album Controller
  */
 
-const debug = require("debug")("albums:album_controller");
+const debug = require("debug")("gallery:album_controller");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 
@@ -132,7 +132,7 @@ const storeRelation = async (req, res) => {
 		{ withRelated: ["photos"], require: false }
 	);
 
-	console.log(album);
+	debug(album);
 	//If not defined, album does not exist or auth is lacked
 	if (!album) {
 		return res.send({
@@ -183,9 +183,10 @@ const storeRelation = async (req, res) => {
 		//Go through above array, and match user ids to see who is owner & of posting user has perms
 		photoArray.forEach((photo) => {
 			const photo_user_id = photo.get("user_id");
-			if (photo.user_id != photo_user_id) {
+			if (req.user.user_id != photo_user_id) {
 				cancelId = photo.get("id");
 			}
+			debug(photo.user_id, photo_user_id);
 		});
 	} catch (error) {
 		debug(error);

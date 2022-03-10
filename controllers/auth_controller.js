@@ -3,7 +3,7 @@
  */
 
 const bcrypt = require("bcrypt");
-const debug = require("debug")("books:auth_controller");
+const debug = require("debug")("gallery:auth_controller");
 const jwt = require("jsonwebtoken");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");

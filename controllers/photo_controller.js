@@ -2,7 +2,7 @@
  * photo Controller
  */
 
-const debug = require("debug")("photos:photo_controller");
+const debug = require("debug")("gallery:photo_controller");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 
