@@ -42,7 +42,6 @@ const register = async (req, res) => {
 			status: "error",
 			message: "Exception thrown when hashing the password.",
 		});
-		throw error;
 	}
 
 	try {
@@ -59,9 +58,8 @@ const register = async (req, res) => {
 		debug(error);
 		res.status(500).send({
 			status: "error",
-			message: "Failed to create new user; internal error",
+			message: "Failed to create new user; user likely already exists",
 		});
-		throw error;
 	}
 };
 

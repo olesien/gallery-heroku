@@ -21,7 +21,7 @@ const index = async (req, res) => {
 			},
 		}).fetchAll([(require = false)]);
 
-		console.log(photos);
+		debug(photos);
 		res.send({
 			status: "success",
 			data: photos,
@@ -98,7 +98,6 @@ const store = async (req, res) => {
 			message:
 				"Exception thrown in database when adding a photo to a user.",
 		});
-		throw error;
 	}
 };
 
@@ -175,14 +174,14 @@ const destroy = async (req, res) => {
 			{ withRelated: ["albums"] }
 		);
 
-		console.log(photo);
+		debug(photo);
 
 		const albums = photo.related("albums");
 
 		// const deleted_photo = await photos.destroy(photos);
 
 		const id_array = albums.map((album, index) => album.id);
-		console.log(id_array);
+		debug(id_array);
 
 		const deleted_album = await photo.albums().detach(id_array);
 
@@ -192,10 +191,10 @@ const destroy = async (req, res) => {
 
 		res.status(500).send({
 			status: "success",
-			message: { deleted_photo, deleted_album },
+			data: null,
 		});
 	} catch (error) {
-		console.log(error);
+		debug(error);
 		res.status(500).send({
 			status: "error",
 			message: "Failed to delete photo!",

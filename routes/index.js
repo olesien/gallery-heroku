@@ -11,7 +11,7 @@ router.get("/", (req, res, next) => {
 });
 
 //intended for testing purposes and reference
-router.use("/user", auth.validateJwtToken, require("./user"));
+router.use("/users", require("./user"));
 
 //photos from the user
 router.use("/photos", auth.validateJwtToken, require("./photo"));

@@ -20,7 +20,7 @@ const index = async (req, res) => {
 			},
 		}).fetchAll([(require = false)]);
 
-		console.log(albums);
+		debug(albums);
 		res.send({
 			status: "success",
 			data: albums,
@@ -59,7 +59,7 @@ const show = async (req, res) => {
 		});
 	} catch (error) {
 		debug(error);
-		console.log(error);
+		debug(error);
 		res.status(500).send({
 			status: "error",
 			message:
@@ -105,7 +105,6 @@ const store = async (req, res) => {
 			message:
 				"Exception thrown in database when adding a album to a user.",
 		});
-		throw error;
 	}
 };
 
@@ -132,6 +131,8 @@ const storeRelation = async (req, res) => {
 		req.params.albumId,
 		{ withRelated: ["photos"], require: false }
 	);
+
+	console.log(album);
 	//If not defined, album does not exist or auth is lacked
 	if (!album) {
 		return res.send({
@@ -145,14 +146,16 @@ const storeRelation = async (req, res) => {
 	//Check if this exact relation already exists, will be falsy or truthy
 
 	//start of for array IF photo_id is an array <- add this to valdiation/album too (allow arrays)
-	let photoArray = [];
+	let photoArrayIds = [];
 	if (Array.isArray(validData.photo_id)) {
-		photoArray = validData.photo_id;
+		photoArrayIds = validData.photo_id;
 	} else {
-		photoArray.push(validData.photo_id);
+		photoArrayIds.push(validData.photo_id);
 	}
 	let cancelId = false;
-	photoArray.forEach((photo_id, index) => {
+
+	//Check if one of the photos is already added
+	photoArrayIds.forEach((photo_id, index) => {
 		const existing_photo = photos.find((photo) => photo.id == photo_id);
 
 		//if it does not, aka is falsy, throw err
@@ -168,11 +171,42 @@ const storeRelation = async (req, res) => {
 		});
 	}
 
-	//end of for array
+	//check through all photos to see who is owner
+	try {
+		//Get list of all photos from id array
+		const photoArray = await models.Photo.where(
+			"id",
+			"IN",
+			photoArrayIds
+		).fetchAll({ required: false });
+
+		//Go through above array, and match user ids to see who is owner & of posting user has perms
+		photoArray.forEach((photo) => {
+			const photo_user_id = photo.get("user_id");
+			if (photo.user_id != photo_user_id) {
+				cancelId = photo.get("id");
+			}
+		});
+	} catch (error) {
+		debug(error);
+		res.status(500).send({
+			status: "error",
+			message:
+				"Exception thrown in database when adding a photo to an album. One photo might not exist!",
+		});
+	}
+
+	//Can't do return res in for each arrays, so doing it here
+	if (cancelId) {
+		return res.send({
+			status: "fail",
+			data: "Photo is not owned by user: " + cancelId,
+		});
+	}
 
 	//Try and add the photo. If this fails it is probably due to the possible situation where that photo Id does not actually exist
 	try {
-		const result = await album.photos().attach(photoArray);
+		const result = await album.photos().attach(photoArrayIds);
 		debug("Added photo(s) to album successfully: %O", result);
 
 		res.send({
@@ -183,14 +217,14 @@ const storeRelation = async (req, res) => {
 		res.status(500).send({
 			status: "error",
 			message:
-				"Exception thrown in database when adding a photo to an album. There is likely no photo with this ID!",
+				"Exception thrown in database when adding a photo to an album. One of the input photo IDs likely don't exist!",
 		});
 	}
 };
 
 /**
  * Update a specific resource
- * UPDATE album password etc
+ * UPDATE album
  *
  * PUT /:albumId
  */
@@ -238,7 +272,6 @@ const update = async (req, res) => {
 			status: "error",
 			message: "Exception thrown in database when updating a new album.",
 		});
-		throw error;
 	}
 };
 
@@ -269,10 +302,10 @@ const destroy = async (req, res) => {
 
 		res.status(500).send({
 			status: "success",
-			message: { deleted_album, deleted_photo },
+			data: { deleted_album, deleted_photo },
 		});
 	} catch (error) {
-		console.log(error);
+		debug(error);
 		res.status(500).send({
 			status: "error",
 			message: "Failed to delete album!",
@@ -311,8 +344,8 @@ const destroyRelation = async (req, res) => {
 			data: "Photo does not exist in this album: " + photo_id,
 		});
 	}
-	console.log(photo_id);
-	console.log(photos);
+	debug(photo_id);
+	debug(photos);
 
 	//Try and add the photo. If this fails it is probably due to the possible situation where that photo Id does not actually exist
 	try {
@@ -324,7 +357,7 @@ const destroyRelation = async (req, res) => {
 			data: null,
 		});
 	} catch (error) {
-		console.log(error);
+		debug(error);
 		res.status(500).send({
 			status: "error",
 			message:
