@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "7c0b23bf-cbb8-42ea-a1ee-eb773daba785",
+		"name": "gallery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login required",
+			"item": [
+				{
+					"name": "albums",
+					"item": [
+						{
+							"name": "GET /albums",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/albums",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/albums/8",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /albums",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Confetti Photos\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/albums",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /albums/id/photos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"photo_id\": [17]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/albums/10/photos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums",
+										"10",
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /albums/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Testing Edited\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/albums/7",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /albums/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/albums/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /albums/albumId/photos/photoId",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/albums/3/photos/10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"albums",
+										"3",
+										"photos",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "photos",
+					"item": [
+						{
+							"name": "GET /photos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/photos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/photos/5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"photos",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /photos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Confetti Photo #1\",\r\n  \"url\": \"pppppppppppppppppppppppppppp\",\r\n  \"comment\": \"Confetti\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/photos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /photos/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"When life gives you confetti, celebrate\",\r\n  \"comment\": \"Yolo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/photos/15",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"photos",
+										"15"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /photos/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/photos/16",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"photos",
+										"16"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "POST register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n     \"email\": \"testing@gmail.com\",\r\n     \"password\": \"testing\",\r\n     \"first_name\": \"testing\",\r\n     \"last_name\": \"testing\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST refresh",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"{{refresh_token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testing@gmail.com\",\n    \"password\": \"testing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0aW5nQGdtYWlsLmNvbSIsInVzZXJfaWQiOjUsIm5hbWUiOiJ0ZXN0aW5nIHRlc3RpbmciLCJpYXQiOjE2NDY5MTgyNTIsImV4cCI6MTY0NjkyNTQ1Mn0.azStPzFin0ibuVDCJSyYNLB8rG0mnPZ7LED1mhLSG0c",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0aW5nQGdtYWlsLmNvbSIsInVzZXJfaWQiOjUsIm5hbWUiOiJ0ZXN0aW5nIHRlc3RpbmciLCJpYXQiOjE2NDY5MTgyNTIsImV4cCI6MTY0ODEyNzg1Mn0.r7uy9iOoC8CMsGXjpJRgetuKMXktjOpwzpRCypZqhik",
+			"type": "string"
+		}
+	]
+}
