@@ -7,8 +7,7 @@ const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 
 /**
- * NOTE: Only intended for testing
- * Get all resources
+ * Get photos
  *
  * GET /
  */
@@ -36,8 +35,7 @@ const index = async (req, res) => {
 };
 
 /**
- * NOTE: Only intended for testing
- * Get a specific resource
+ * Get one photo
  *
  * GET /:photoId
  */
@@ -62,13 +60,12 @@ const show = async (req, res) => {
 };
 
 /**
- * Store a new resource
+ * Store new photo
 {
   "title": "Confetti Photo #1",
   "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
   "comment": "Confetti"
 }
- *
  * POST /
  */
 const store = async (req, res) => {
@@ -102,8 +99,7 @@ const store = async (req, res) => {
 };
 
 /**
- * Update a specific resource
- * UPDATE photo password etc
+ * UPDATE photo (title etc)
  *
  * PUT /:photoId
  */
@@ -156,17 +152,11 @@ const update = async (req, res) => {
 };
 
 /**
- * Destroy a specific resource
  *
  * DELETE /:photoId
  */
 const destroy = async (req, res) => {
 	try {
-		// const photo = await new models.Photo({
-		// 	id: req.params.photoId,
-		// 	user_id: req.user.user_id,
-		// }).fetch();
-
 		//Get the album and its relation.
 		const photo = await models.Photo.fetchAlbums(
 			req.user.user_id,

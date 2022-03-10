@@ -7,7 +7,7 @@ const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 
 /**
- * Get all resources
+ * Get all albums
  *
  * GET /
  */
@@ -35,8 +35,7 @@ const index = async (req, res) => {
 };
 
 /**
- * NOTE: Only intended for testing
- * Get a specific resource
+ * Get one album and all photos that go with it...
  *
  * GET /:albumId
  */
@@ -277,7 +276,7 @@ const update = async (req, res) => {
 };
 
 /**
- * Destroy a specific resource
+ * Destroy photo
  *
  * DELETE /:albumId
  */
@@ -314,7 +313,11 @@ const destroy = async (req, res) => {
 	}
 };
 
-//req.params.albumId, req.params.photoId
+/**
+ * Destroy a photo album relation
+ *
+ */
+
 const destroyRelation = async (req, res) => {
 	// check for any validation errors
 	const photo_id = req.params.photoId;
