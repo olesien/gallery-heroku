@@ -437,17 +437,17 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:3000",
+			"value": "https://gallery-linus.herokuapp.com/",
 			"type": "string"
 		},
 		{
 			"key": "access_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0aW5nQGdtYWlsLmNvbSIsInVzZXJfaWQiOjUsIm5hbWUiOiJ0ZXN0aW5nIHRlc3RpbmciLCJpYXQiOjE2NDY5MTgyNTIsImV4cCI6MTY0NjkyNTQ1Mn0.azStPzFin0ibuVDCJSyYNLB8rG0mnPZ7LED1mhLSG0c",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0aW5nQGdtYWlsLmNvbSIsInVzZXJfaWQiOjUsIm5hbWUiOiJ0ZXN0aW5nIHRlc3RpbmciLCJpYXQiOjE2NDY5MjQxMjgsImV4cCI6MTY0NjkzMTMyOH0.yK0JHcYdG40oSzbiSAsbdur2IeDQ2CrDTAVh02DXnsI",
 			"type": "string"
 		},
 		{
 			"key": "refresh_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0aW5nQGdtYWlsLmNvbSIsInVzZXJfaWQiOjUsIm5hbWUiOiJ0ZXN0aW5nIHRlc3RpbmciLCJpYXQiOjE2NDY5MTgyNTIsImV4cCI6MTY0ODEyNzg1Mn0.r7uy9iOoC8CMsGXjpJRgetuKMXktjOpwzpRCypZqhik",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0aW5nQGdtYWlsLmNvbSIsInVzZXJfaWQiOjUsIm5hbWUiOiJ0ZXN0aW5nIHRlc3RpbmciLCJpYXQiOjE2NDY5MjQxMjgsImV4cCI6MTY0ODEzMzcyOH0.xa54P1t_8LGCJXVWa8xIYCP4BsIOWWs0KOVyTmBpOVE",
 			"type": "string"
 		}
 	]
